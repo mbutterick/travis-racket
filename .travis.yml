@@ -25,6 +25,8 @@ before_script:
 # `raco pkg install --deps search-auto <pkg>` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
+ - date
+ - ll /usr/racket/bin/raco
  - /usr/racket/bin/raco make main.rkt
  - /usr/racket/bin/raco test -x .
 
