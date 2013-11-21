@@ -26,7 +26,7 @@ before_script:
 # packages without it getting stuck on a confirmation prompt.
 script:
  - date
- - ll /usr/racket/bin/raco
+ - ls -l /usr/racket/bin/raco
  - /usr/racket/bin/raco make main.rkt
  - /usr/racket/bin/raco test -x .
 
