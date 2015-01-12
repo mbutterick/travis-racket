@@ -19,6 +19,9 @@ env:
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git
+- cd travis-racket              ### JUST FOR TESTING, DON'T MERGE TO MASTER
+- git checkout travis-container ### JUST FOR TESTING, DON'T MERGE TO MASTER
+- cd ..                         ### JUST FOR TESTING, DON'T MERGE TO MASTER
 - cat travis-racket/install-racket.sh | bash # pipe to bash not sh!
 
 install:
