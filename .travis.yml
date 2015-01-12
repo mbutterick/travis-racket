@@ -7,7 +7,15 @@ language: c
 #
 # sudo: false
 
-# 1. Supply at least one RACKET_VERSION environment variable
+# 1. Supply one RACKET_DIR environment variable definition here. This
+#    is where Racket will be installed. If you omit this, it defaults
+#    to /usr/racket. However note that this default is incompatible
+#    with using Travis CI's container infrastructure. If you enable
+#    that (by setting `sudo: false` above), then you should set
+#    RACKET_DIR to a location that doesn't require sudo: A good
+#    idea is to use ~/racket.
+#
+# 2. Supply at least one RACKET_VERSION environment variable
 #    definition here. RACKET_VERSION is used by the install-racket.sh
 #    script (specifed below under before_install) to select the
 #    version of Racket to download and install.
@@ -15,23 +23,17 @@ language: c
 #    If you supply more than one, you can create multiple builds (a
 #    Travis-CI build matrix resulting in multiple builds). You can use
 #    this to test against multiple Racket versions.
-#
-# 2. Supply one RACKET_DIR environment variable definition here. This
-#    is where Racket will be installed. If you omit this, it defaults
-#    to /usr/racket. However note that this default is incompatible
-#    with using Travis CI's container infrastructure. If you enable
-#    that (by setting `sudo: false` above), then you should set
-#    RACKET_DIR to a location that doesn't require sudo: A good
-#    idea is to use ~/racket.
 env:
-  - RACKET_VERSION=5.3.4
-  - RACKET_VERSION=5.3.5
-  - RACKET_VERSION=5.92
-  - RACKET_VERSION=6.0
-  - RACKET_VERSION=6.1
-  - RACKET_VERSION=6.1.1
-  - RACKET_VERSION=HEAD
-  - RACKET_DIR=~/racket
+  global:
+    - RACKET_DIR=~/racket
+  matrix:
+    - RACKET_VERSION=5.3.4
+    - RACKET_VERSION=5.3.5
+    - RACKET_VERSION=5.92
+    - RACKET_VERSION=6.0
+    - RACKET_VERSION=6.1
+    - RACKET_VERSION=6.1.1
+    - RACKET_VERSION=HEAD
 
 before_install:
   - git clone https://github.com/greghendershott/travis-racket.git
