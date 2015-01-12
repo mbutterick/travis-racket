@@ -22,7 +22,7 @@ echo "Running $INSTALL to install Racket:"
 chmod u+rx "$INSTALL"
 "$INSTALL" <<EOF
 no
-/usr/racket
+~/racket
 
 EOF
 

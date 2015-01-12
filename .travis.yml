@@ -29,12 +29,12 @@ install:
 before_script:
 
 # Here supply steps such as raco make, raco test, etc.  Note that you
-# need to supply /usr/racket/bin/ -- it's not in PATH. You can run
+# need to supply ~/racket/bin/ -- it's not in PATH. You can run
 # `raco pkg install --deps search-auto <pkg>` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
- - /usr/racket/bin/raco make main.rkt
- - /usr/racket/bin/raco test -x .
+ - ~/racket/bin/raco make main.rkt
+ - ~/racket/bin/raco test -x .
 
 # NOTE: If your repo is a Racket package with an info.rkt that
 # includes some `deps`, the following is more elegant:
