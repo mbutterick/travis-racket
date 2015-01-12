@@ -39,6 +39,12 @@ before_install:
   - git checkout travis-container ### JUST FOR TESTING, DON'T MERGE TO MASTER
   - cd ..                         ### JUST FOR TESTING, DON'T MERGE TO MASTER
   - cat travis-racket/install-racket.sh | bash # pipe to bash not sh!
+  - echo $RACKET_DIR
+  - echo "$RACKET_DIR"
+  - echo "${RACKET_DIR}"
+  - echo "${RACKET_DIR}/bin"
+  - export PATH="${RACKET_DIR}/bin:${PATH}" #install-racket.sh can't set for us
+  - echo $PATH
 
 install:
 
@@ -49,7 +55,6 @@ before_script:
 # Tip: Use `raco pkg install --deps search-auto <pkg>` to install any
 # required packages without getting stuck on a confirmation prompt.
 script:
-  - echo $PATH
   - raco make main.rkt
   - raco test -x .
 
@@ -58,7 +63,7 @@ script:
 #
 # script:
 # - cd ..   # Travis did a cd into the dir. Back up, for the next:
-# - /usr/racket/bin/raco pkg install --deps search-auto --link <pkg>
-# - /usr/racket/bin/raco test -x -p <pkg>
+# - raco pkg install --deps search-auto --link <pkg>
+# - raco test -x -p <pkg>
 
 after_script:
