@@ -13,6 +13,13 @@ else
     URL="http://download.racket-lang.org/installers/${RACKET_VERSION}/racket/racket-${RACKET_VERSION}-bin-x86_64-linux-debian-squeeze.sh"
 fi
 
+# For backward compatability with older .travis.yml files that do not
+# set the Racket install directory explicitly, and expect it to be
+# /usr/racket.
+if [[ "$RACKET" = "" ]]; then
+    RACKET=/usr/racket
+fi
+
 INSTALL="./racket-${RACKET_VERSION}.sh"
 
 echo "Downloading $URL to $INSTALL:"
@@ -22,7 +29,7 @@ echo "Running $INSTALL to install Racket:"
 chmod u+rx "$INSTALL"
 "$INSTALL" <<EOF
 no
-~/racket
+"$RACKET"
 
 EOF
 
