@@ -39,4 +39,9 @@ no
 
 EOF
 
+PATH="${RACKET_DIR}/bin:${PATH}"
+export PATH
+
+echo "$PATH" #Just for DEBUGGING
+
 exit 0
