@@ -20,7 +20,7 @@ curl -L -o $INSTALL $URL
 
 echo "Running $INSTALL to install Racket:"
 chmod u+rx "$INSTALL"
-sudo "$INSTALL" <<EOF
+"$INSTALL" <<EOF
 no
 /usr/racket
 
