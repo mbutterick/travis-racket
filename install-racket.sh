@@ -19,13 +19,6 @@ if [[ "$RACKET_DIR" = "" ]]; then
     RACKET_DIR=/usr/racket
 fi
 
-# Only use sudo if installing to /usr
-if [[ "$RACKET_DIR" = /usr* ]]; then
-    MAYBE_SUDO=sudo
-else
-    MAYBE_SUDO=""
-fi
-
 INSTALLER="./racket-${RACKET_VERSION}.sh"
 
 echo "Downloading $URL to $INSTALLER:"
@@ -33,7 +26,15 @@ curl -L -o $INSTALLER $URL
 
 echo "Running $INSTALLER to install Racket:"
 chmod u+rx "$INSTALLER"
-"$MAYBE_SUDO" "$INSTALLER" <<EOF
+
+# Only use sudo if installing to /usr
+if [[ "$RACKET_DIR" = /usr* ]]; then
+    RUN_INSTALLER="sudo ${INSTALLER}"
+else
+    RUN_INSTALLER="${INSTALLER}"
+fi
+
+"$RUN_INSTALLER" <<EOF
 no
 "$RACKET_DIR"
 
