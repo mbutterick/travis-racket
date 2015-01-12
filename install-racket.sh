@@ -13,23 +13,29 @@ else
     URL="http://download.racket-lang.org/installers/${RACKET_VERSION}/racket/racket-${RACKET_VERSION}-bin-x86_64-linux-debian-squeeze.sh"
 fi
 
-# For backward compatability with older .travis.yml files that do not
-# set the Racket install directory explicitly, and expect it to be
-# /usr/racket.
-if [[ "$RACKET" = "" ]]; then
-    RACKET=/usr/racket
+# Older .travis.yml files don't set $RACKET_DIR (the Racket install
+# directory) explicitly and expect it to be /usr/racket.
+if [[ "$RACKET_DIR" = "" ]]; then
+    RACKET_DIR=/usr/racket
 fi
 
-INSTALL="./racket-${RACKET_VERSION}.sh"
+# Only use sudo if installing to /usr
+if [[ "$RACKET_DIR" = /usr* ]]; then
+    MAYBE_SUDO=sudo
+else
+    MAYBE_SUDO=""
+fi
 
-echo "Downloading $URL to $INSTALL:"
-curl -L -o $INSTALL $URL
+INSTALLER="./racket-${RACKET_VERSION}.sh"
+
+echo "Downloading $URL to $INSTALLER:"
+curl -L -o $INSTALLER $URL
 
 echo "Running $INSTALL to install Racket:"
-chmod u+rx "$INSTALL"
-"$INSTALL" <<EOF
+chmod u+rx "$INSTALLER"
+"$MAYBE_SUDO" "$INSTALLER" <<EOF
 no
-"$RACKET"
+"$RACKET_DIR"
 
 EOF
 
