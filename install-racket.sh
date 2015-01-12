@@ -24,6 +24,6 @@ chmod u+rx "$INSTALL"
 no
 /usr/racket
 
-# EOF
+EOF
 
 exit 0
