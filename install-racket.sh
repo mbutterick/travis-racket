@@ -31,7 +31,7 @@ INSTALLER="./racket-${RACKET_VERSION}.sh"
 echo "Downloading $URL to $INSTALLER:"
 curl -L -o $INSTALLER $URL
 
-echo "Running $INSTALL to install Racket:"
+echo "Running $INSTALLER to install Racket:"
 chmod u+rx "$INSTALLER"
 "$MAYBE_SUDO" "$INSTALLER" <<EOF
 no
