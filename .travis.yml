@@ -1,32 +1,26 @@
 language: c
 
 # Optional: To use Travis CI's newer container infrastucture,
-# un-comment the following line, AND ALSO be sure RACKET_DIR is set to
-# ~/racket (or somewhere else that doesn't require sudo to install
-# Racket there).
+# un-comment the following line. (Also be sure RACKET_DIR is set to
+# somewhere like ~/racket that doesn't require sudo.)
 #
 # sudo: false
 
-# 1. Supply one RACKET_DIR environment variable definition here. This
-#    is where Racket will be installed. If you omit this, it defaults
-#    to /usr/racket. However note that this default is incompatible
-#    with using Travis CI's container infrastructure. If you enable
-#    that (by setting `sudo: false` above), then you should set
-#    RACKET_DIR to a location that doesn't require sudo: A good
-#    idea is to use ~/racket.
-#
-# 2. Supply at least one RACKET_VERSION environment variable
-#    definition here. RACKET_VERSION is used by the install-racket.sh
-#    script (specifed below under before_install) to select the
-#    version of Racket to download and install.
-#
-#    If you supply more than one, you can create multiple builds (a
-#    Travis-CI build matrix resulting in multiple builds). You can use
-#    this to test against multiple Racket versions.
 env:
   global:
+    # Supply a global RACKET_DIR environment variable. This is where
+    # Racket will be installed. A good idea is to use ~/racket because
+    # that doesn't require sudo to install and is therefore compatible
+    # with Travis CI's newer container infrastructure.
     - RACKET_DIR=~/racket
   matrix:
+    # Supply at least one RACKET_VERSION environment variable. This is
+    # used by the install-racket.sh script (run at before_install,
+    # below) to select the version of Racket to download and install.
+    #
+    # Supply more than one RACKET_VERSION (as in the example below) to
+    # create a Travis-CI build matrix to test against multiple Racket
+    # versions.
     - RACKET_VERSION=5.3.4
     - RACKET_VERSION=5.3.5
     - RACKET_VERSION=5.92
@@ -41,12 +35,7 @@ before_install:
   - git checkout travis-container ### JUST FOR TESTING, DON'T MERGE TO MASTER
   - cd ..                         ### JUST FOR TESTING, DON'T MERGE TO MASTER
   - cat travis-racket/install-racket.sh | bash # pipe to bash not sh!
-  - echo $RACKET_DIR
-  - echo "$RACKET_DIR"
-  - echo "${RACKET_DIR}"
-  - echo "${RACKET_DIR}/bin"
   - export PATH="${RACKET_DIR}/bin:${PATH}" #install-racket.sh can't set for us
-  - echo $PATH
 
 install:
 
