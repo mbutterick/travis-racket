@@ -4,7 +4,11 @@ language: c
 # un-comment the following line. (Also be sure RACKET_DIR is set to
 # somewhere like ~/racket that doesn't require sudo.)
 #
-# sudo: false
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.racket/download-cache
 
 env:
   global:
@@ -12,7 +16,7 @@ env:
     # Racket will be installed. A good idea is to use ~/racket because
     # that doesn't require sudo to install and is therefore compatible
     # with Travis CI's newer container infrastructure.
-    - RACKET_DIR=~/racket
+    - RACKET_DIR=$HOME/racket
   matrix:
     # Supply at least one RACKET_VERSION environment variable. This is
     # used by the install-racket.sh script (run at before_install,
