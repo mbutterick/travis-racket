@@ -9,6 +9,8 @@ sudo: false
 cache:
   directories:
     - $HOME/.racket/download-cache
+    # The following is probably NOT right for Racket HEAD??
+    - $HOME/racket
 
 env:
   global:
