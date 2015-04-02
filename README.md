@@ -14,4 +14,4 @@ make` and `raco test` parts.
 Here's a "badge" showing the status for the `master` branch of this
 repo:
 
-[![Build Status](https://travis-ci.org/greghendershott/travis-racket.png?branch=master)](https://travis-ci.org/greghendershott/travis-racket)
+[![Build Status](https://travis-ci.org/mbutterick/travis-racket.svg)](https://travis-ci.org/mbutterick/travis-racket)
