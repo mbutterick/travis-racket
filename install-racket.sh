@@ -5,12 +5,16 @@ set -e
 
 if [[ "$RACKET_VERSION" = "HEAD" ]]; then
     URL="http://plt.eecs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-precise.sh"
+elif [[ "$RACKET_VERSION" = "SCOPE_SNAPSHOT" ]]; then
+    URL="http://www.cs.utah.edu/~mflatt/tmp/scope-snapshot/installers/racket-current-x86_64-linux.sh"
+elif [[ "$RACKET_VERSION" = "RELEASE" ]]; then
+    URL="http://pre-release.racket-lang.org/installers/racket-current-x86_64-linux-ubuntu-precise.sh"
 elif [[ "$RACKET_VERSION" = 5.9* ]]; then
-    URL="http://mirror.racket-lang.org/installers/${RACKET_VERSION}/racket-${RACKET_VERSION}-x86_64-linux-ubuntu-quantal.sh"
+    URL="http://download.racket-lang.org/installers/${RACKET_VERSION}/racket-${RACKET_VERSION}-x86_64-linux-ubuntu-quantal.sh"
 elif [[ "$RACKET_VERSION" = 6.* ]]; then
-    URL="http://mirror.racket-lang.org/installers/${RACKET_VERSION}/racket-${RACKET_VERSION}-x86_64-linux-ubuntu-precise.sh"
+    URL="http://download.racket-lang.org/installers/${RACKET_VERSION}/racket-${RACKET_VERSION}-x86_64-linux-ubuntu-precise.sh"
 else
-    URL="http://mirror.racket-lang.org/installers/${RACKET_VERSION}/racket/racket-${RACKET_VERSION}-bin-x86_64-linux-debian-squeeze.sh"
+    URL="http://download.racket-lang.org/installers/${RACKET_VERSION}/racket/racket-${RACKET_VERSION}-bin-x86_64-linux-debian-squeeze.sh"
 fi
 
 # Older .travis.yml files don't set $RACKET_DIR (the Racket install
@@ -39,7 +43,6 @@ echo "Running $RUN_INSTALLER to install Racket:"
 $RUN_INSTALLER <<EOF
 no
 "$RACKET_DIR"
-
 EOF
 
 exit 0
