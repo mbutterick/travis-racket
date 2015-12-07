@@ -4,7 +4,7 @@
 set -e
 
 if [[ "$RACKET_VERSION" = "HEAD" ]]; then
-    URL="http://plt.eecs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-precise.sh"
+    URL="http://www.cs.utah.edu/plt/snapshots/current/installers/racket-test-current-x86_64-linux-precise.sh"
 elif [[ "$RACKET_VERSION" = "SCOPE_SNAPSHOT" ]]; then
     URL="http://www.cs.utah.edu/~mflatt/tmp/scope-snapshot/installers/racket-current-x86_64-linux.sh"
 elif [[ "$RACKET_VERSION" = "RELEASE" ]]; then
